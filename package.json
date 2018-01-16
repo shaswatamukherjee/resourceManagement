@@ -85,7 +85,7 @@
     "node": "6.11.4"
   },
   "scripts": {
-    "postinstall": "jspm install",
+    "postinstall": "jspm bundle-sfx app/main && jspm install",
     "start": "gulp serve"
   }
 }
