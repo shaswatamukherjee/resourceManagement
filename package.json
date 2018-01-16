@@ -81,6 +81,9 @@
       "core-js": "npm:core-js@^1.1.4"
     }
   },
+  "engines": {
+    "node": ">=6.11"
+  },
   "scripts": {
     "postinstall": "jspm install",
     "start": "gulp serve"
