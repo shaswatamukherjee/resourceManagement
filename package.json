@@ -1,6 +1,6 @@
 {
   "name": "resourceManagement",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "This is an application to do the resource management for Infosys Limited",
   "main": "app.js",
   "dependencies": {
@@ -82,7 +82,7 @@
     }
   },
   "engines": {
-    "node": ">=6.11"
+    "node": "6.11.4"
   },
   "scripts": {
     "postinstall": "jspm install",
