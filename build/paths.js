@@ -1,6 +1,6 @@
 module.exports = {
     scripts: 'src/**/*.js',
-    html: '**/*.html',
+    html: 'src/**/*.html',
     css: ['src/**/*.css'],
     less: ['src/**/*.less'],
     sass: ['src/**/*.scss'],

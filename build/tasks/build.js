@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const changed = require('gulp-changed');
 const plumber = require('gulp-plumber');
-const babel = require('gulp-babel');
 const sourceMaps = require('gulp-sourcemaps');
 const less = require('gulp-less');
 const sass = require('gulp-sass');
@@ -25,8 +24,7 @@ const cleancss = new lessPluginCleanCSS({
 });
 
 gulp.task('build', (callback) => {
-    return runSequence(
-        'clean',
+    return runSequence('clean',
         ['compile-js', 'compile-html', 'compile-style', 'move'],
         callback
     );
@@ -36,7 +34,6 @@ gulp.task('compile-js', () => {
     return gulp.src(paths.scripts, {base: 'src'})
         .pipe(plumber())
         .pipe(changed(paths.outputSource, { extension: '.js' }))
-        .pipe(babel(babelOptions))
         .pipe(ifElse(liveEnv, uglify))
         .pipe(gulp.dest(paths.outputSource))
 });
@@ -45,7 +42,6 @@ gulp.task('compile-html', () => {
     return gulp.src(paths.html)
         .pipe(plumber())
         .pipe(changed(paths.outputSource, { extension: '.html' }))
-        .pipe(babel(babelOptions))
         .pipe(gulp.dest(paths.outputSource))
 });
 
@@ -66,7 +62,6 @@ gulp.task('compile-style', () => {
     let mergedCssStream = merge(lessStream, sassStream, cssStream)
         .pipe(plumber())
         .pipe(changed(paths.outputCss, { extension: '.css' }))
-        .pipe(babel(babelOptions))
         .pipe(concat('styles.css'))
         .pipe(ifElse(liveEnv, uglify))
         .pipe(gulp.dest(paths.outputCss))

@@ -9,14 +9,17 @@
         <meta name="apple-mobile-web-app-title" content="Demo App">
         <title>Resource Management</title>
         <base href="/">
-        <script src="./node_modules/systemjs/dist/system.src.js"></script>
-        <script src="system.config.js"></script>
+        <script src="jspm_packages/system.js"></script>
+        <script src="systemjs.config.js"></script>
         <script>
-            System.import('src/app');
+            System.import('app/app')
+                .catch(function (err) {
+                    console.log(err);
+                });
         </script>
     </head>
-</html>
-<body ng-cloak>
-    <h1>A</h1>
+    <body ng-cloak ng-controller="resourceManagementController as resource">
+        <h1>A</h1>
 
-</body>
+    </body>
+</html>
