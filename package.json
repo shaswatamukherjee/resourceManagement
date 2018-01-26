@@ -4,6 +4,7 @@
   "description": "This is an application to do the resource management for Infosys Limited",
   "main": "app.js",
   "dependencies": {
+    "express": "^4.16.2",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
@@ -66,7 +67,8 @@
     "yargs": "4.7.1"
   },
   "scripts": {
-    "start": "gulp serve"
+    "postinstall": "gulp build",
+    "start": "node server.js"
   },
   "keywords": [
     "angular",
@@ -90,6 +92,7 @@
     }
   },
   "engines": {
-    "node": "6.11.4"
+    "node": "6.11.4",
+    "npm": "3.10.10"
   }
 }
