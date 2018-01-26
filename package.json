@@ -67,7 +67,7 @@
     "yargs": "4.7.1"
   },
   "scripts": {
-    "postinstall": "gulp build",
+    "postinstall": "npm install -g gulp && gulp build",
     "start": "node server.js"
   },
   "keywords": [
