@@ -6,7 +6,7 @@ gulp.task('browser-sync', function () {
         open: false,
         port: 9000,
         server: {
-            baseDir: ['.'],
+            baseDir: 'dist',
             index: 'index.html'
         }
     });

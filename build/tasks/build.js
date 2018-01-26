@@ -1,6 +1,8 @@
 const gulp = require('gulp');
 const changed = require('gulp-changed');
+const babel = require('gulp-babel');
 const plumber = require('gulp-plumber');
+const ngAnnotate = require('gulp-ng-annotate');
 const sourceMaps = require('gulp-sourcemaps');
 const less = require('gulp-less');
 const sass = require('gulp-sass');
@@ -25,21 +27,28 @@ const cleancss = new lessPluginCleanCSS({
 
 gulp.task('build', (callback) => {
     return runSequence('clean',
-        ['compile-js', 'compile-html', 'compile-style', 'move'],
+        [
+            'compile-js',
+            'compile-html',
+            'compile-style',
+            'compile-vendor',
+            'move'
+        ],
         callback
     );
 });
 
 gulp.task('compile-js', () => {
-    return gulp.src(paths.scripts, {base: 'src'})
+    return gulp.src(paths.app.scripts)
         .pipe(plumber())
         .pipe(changed(paths.outputSource, { extension: '.js' }))
-        .pipe(ifElse(liveEnv, uglify))
+        //.pipe(uglify())
+        .pipe(babel(babelOptions))
         .pipe(gulp.dest(paths.outputSource))
 });
 
 gulp.task('compile-html', () => {
-    return gulp.src(paths.html)
+    return gulp.src(paths.app.templates)
         .pipe(plumber())
         .pipe(changed(paths.outputSource, { extension: '.html' }))
         .pipe(gulp.dest(paths.outputSource))
@@ -56,13 +65,13 @@ gulp.task('compile-style', () => {
         .pipe(sass())
         .pipe(concat('concated-styles.sass'));
 
-    let cssStream = gulp.src(paths.css)
+    let cssStream = gulp.src(paths.app.css)
         .pipe(concat('concated-styles.css'));
 
     let mergedCssStream = merge(lessStream, sassStream, cssStream)
         .pipe(plumber())
         .pipe(changed(paths.outputCss, { extension: '.css' }))
-        .pipe(concat('styles.css'))
+        .pipe(concat('core.css'))
         .pipe(ifElse(liveEnv, uglify))
         .pipe(gulp.dest(paths.outputCss))
         .pipe(browserSync.reload({ stream: true }));
@@ -70,3 +79,11 @@ gulp.task('compile-style', () => {
     return mergedCssStream;
 });
 
+gulp.task('compile-vendor', () => {
+    return gulp.src(paths.vendor.js)
+        .pipe(plumber())
+        .pipe(changed(paths.outputSource, { extension: '.js' }))
+        //.pipe(uglify())
+        .pipe(babel(babelOptions))
+        .pipe(gulp.dest(paths.outputVendor))
+});

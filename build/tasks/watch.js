@@ -7,6 +7,6 @@ function changed(event) {
 }
 
 gulp.task('watch', () => {
-    gulp.watch( paths.scripts , [ 'compile-js', browserSync.reload ]).on('change', changed);
-    gulp.watch( paths.html , [ 'compile-html', browserSync.reload ]).on('change', changed);
+    gulp.watch( paths.app.scripts , [ 'compile-js', browserSync.reload ]).on('change', changed);
+    gulp.watch( paths.app.templates , [ 'compile-html', browserSync.reload ]).on('change', changed);
 });
