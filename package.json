@@ -5,6 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "express": "^4.16.2",
+    "gulp": "^3.9.1",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
@@ -67,7 +68,7 @@
     "yargs": "4.7.1"
   },
   "scripts": {
-    "preinstall": "npm install -g gulp",
+    //"preinstall": "npm install -g gulp",
     "postinstall": "gulp build",
     "start": "node server.js"
   },
