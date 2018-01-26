@@ -68,7 +68,6 @@
     "yargs": "4.7.1"
   },
   "scripts": {
-    //"preinstall": "npm install -g gulp",
     "postinstall": "gulp build",
     "start": "node server.js"
   },
