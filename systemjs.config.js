@@ -11,8 +11,10 @@ System.config({
   paths: {
     "npm:*": "jspm_packages/npm/*",
     "module/": "app/modules/",
-    "vendor/": "vendor/"
+    "vendor/": "vendor/",
+    "github:*": "jspm_packages/github/*"
   },
+
   map: {
     "angular": "vendor/angular.js",
     "angular-ui-router": "vendor/angular-ui-router.js",
